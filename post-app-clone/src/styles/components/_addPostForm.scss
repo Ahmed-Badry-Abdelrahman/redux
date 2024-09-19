@@ -1,0 +1,52 @@
+.add-post-form {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+
+    >form {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        background-color: rgba(152, 198, 238, 0.437);
+        border-radius: 1rem;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+        padding: 20px;
+
+        >input,
+        >textarea,
+        >button {
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            outline: none;
+            width: 100%;
+            background-color: #a1abb9;
+        }
+
+        >textarea {
+            resize: vertical;
+        }
+
+        >button {
+            background-color: #7ae57e81;
+            color: white;
+            cursor: pointer;
+            transition: all ease .4s;
+            -webkit-transition: all ease .4s;
+            -moz-transition: all ease .4s;
+            -ms-transition: all ease .4s;
+            -o-transition: all ease .4s;
+
+            &:hover {
+                background-color: #7ae57eb2;
+            }
+        }
+    }
+}

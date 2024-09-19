@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #f7f7f7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: bold;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #333;
+}
+
+section.post-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+section.post-list > .posts {
+  min-width: 600px;
+  padding: 2rem;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  background-color: #565656;
+}
+section.post-list > .posts > .title-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.312);
+}
+section.post-list > .posts > .title-date > .time {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+section.post-list > .posts > p {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+section.post-list > .posts > .reactions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+section.post-list > .posts > .reactions > .reaction {
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  background-color: #6a6a6a;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+}
+section.post-list > .posts > .reactions > .reaction:hover:not(.like-reaction, .heart-reaction, .dislike-reaction) {
+  background-color: #5a5a5a;
+}
+section.post-list > .posts > .reactions > .like-reaction {
+  background-color: #078ce4;
+}
+section.post-list > .posts > .reactions > .like-reaction:hover {
+  background-color: #008cff;
+}
+section.post-list > .posts > .reactions > .heart-reaction {
+  background-color: #df2626;
+}
+section.post-list > .posts > .reactions > .heart-reaction:hover {
+  background-color: #ff0000;
+}
+section.post-list > .posts > .reactions > .dislike-reaction {
+  background-color: #0f0a0a;
+}
+section.post-list > .posts > .reactions > .dislike-reaction:hover {
+  background-color: #000000;
+}
+
+.add-post-form {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.add-post-form > form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: rgba(152, 198, 238, 0.437);
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  padding: 20px;
+}
+.add-post-form > form > input,
+.add-post-form > form > textarea,
+.add-post-form > form > button {
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: #a1abb9;
+}
+.add-post-form > form > textarea {
+  resize: vertical;
+}
+.add-post-form > form > button {
+  background-color: rgba(122, 229, 126, 0.5058823529);
+  color: white;
+  cursor: pointer;
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
+  -moz-transition: all ease 0.4s;
+  -ms-transition: all ease 0.4s;
+  -o-transition: all ease 0.4s;
+}
+.add-post-form > form > button:hover {
+  background-color: rgba(122, 229, 126, 0.6980392157);
+}/*# sourceMappingURL=main.css.map */

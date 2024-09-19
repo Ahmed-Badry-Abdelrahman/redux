@@ -1,0 +1,5 @@
+@use './variables/color';
+@use './base//reset';
+
+@use './components/postList';
+@use './components/addPostForm'
