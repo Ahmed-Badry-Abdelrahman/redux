@@ -16,8 +16,13 @@ const PostReactions = ({ post }) => {
   return (
     <div className="post-reactions">
       {Object.entries(reactionsEmoji).map(([name, emoji]) => {
+        const isReacted = post.userReaction === name;
         return (
-          <button key={name} onClick={() => reactionClicked(name)}>
+          <button
+            key={name}
+            className={isReacted && `reacted-${name}`}
+            onClick={() => reactionClicked(name)}
+          >
             {emoji} {""} {post.reactions[name]}
           </button>
         );

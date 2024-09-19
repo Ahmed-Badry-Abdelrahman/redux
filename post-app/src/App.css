@@ -89,3 +89,15 @@
   display: flex;
   gap: 10px;
 }
+
+.reacted-heart {
+  background-color: rgb(210, 41, 69);
+}
+
+.reacted-like {
+  background-color: rgb(41, 120, 210);
+}
+
+.reacted-dislike {
+  background-color: rgb(0, 0, 0);
+}

@@ -8,10 +8,11 @@ const initialState = [
     content: "Hello, I'm User 1",
     date: sub(new Date(), { minutes: 10 }).toISOString(),
     reactions: {
-      like: 0,
+      like: 12,
       dislike: 0,
       heart: 0,
     },
+    userReaction: "like", // Track user's current reaction
   },
   {
     id: 2,
@@ -19,10 +20,11 @@ const initialState = [
     content: "Hello, I'm User 2",
     date: sub(new Date(), { minutes: 5 }).toISOString(),
     reactions: {
-      like: 0,
-      dislike: 0,
-      heart: 0,
+      like: 44,
+      dislike: 2,
+      heart: 23,
     },
+    userReaction: "heart", // Track user's current reaction
   },
 ];
 
@@ -47,6 +49,7 @@ const postSlice = createSlice({
               dislike: 0,
               heart: 0,
             },
+            userReaction: null, // Initialize user reaction
           },
         };
       },
@@ -55,7 +58,14 @@ const postSlice = createSlice({
       const { postId, reaction } = action.payload;
       const post = state.find((post) => post.id === postId);
       if (post) {
-        post.reactions[reaction]++;
+        // Remove the previous reaction if it exists
+        if (post.userReaction) {
+          post.reactions[post.userReaction] -= 1;
+        }
+        // Add the new reaction
+        post.reactions[reaction] += 1;
+        // Update the user's current reaction
+        post.userReaction = reaction;
       }
     },
   },
