@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import UserRendering from "./UserRendering";
 
 export const PostRendering = ({ posts }) => {
-  console.log(posts);
   return (
     <React.Fragment>
       {posts &&
@@ -11,6 +11,7 @@ export const PostRendering = ({ posts }) => {
             <div key={post.id} className="post">
               <h2>{post.title}</h2>
               <p>{post.content.substring(0, 100)}</p>
+              <UserRendering userId={post.userId} />
             </div>
           );
         })}
