@@ -75,3 +75,17 @@
   -o-border-radius: 6px;
   margin-bottom: 20px;
 }
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.space-btw {
+  justify-content: space-between;
+}
+
+.post-reactions {
+  display: flex;
+  gap: 10px;
+}
