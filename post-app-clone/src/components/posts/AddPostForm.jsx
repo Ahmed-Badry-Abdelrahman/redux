@@ -1,24 +1,34 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPost } from "../../features/posts/postsSlice";
+import { createPost } from "../../features/posts/postsSlice";
 const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  const [addPostStatus, setAddPostStatus] = useState("idle");
+  const userId = 1;
   const dispatch = useDispatch();
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
 
+  const canSubmit =
+    [title, content, userId].every(Boolean) && addPostStatus === "idle";
+
   const onPostSend = (e) => {
     e.preventDefault();
-    if (title && content) {
-      dispatch(addPost(title, content));
-      setTitle("");
-      setContent("");
+    try {
+      if (canSubmit) {
+        setAddPostStatus("pending");
+        dispatch(createPost({ title, body: content, userId }));
+        setTitle("");
+        setContent("");
+      }
+    } catch (error) {
+      console.log("flailed to save the post", error);
+    } finally {
+      setAddPostStatus("idle");
     }
   };
 
-  const canSubmit = title && content;
   return (
     <div className="add-post-form">
       <form onSubmit={onPostSend}>
