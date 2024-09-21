@@ -13,17 +13,18 @@ const AddPostForm = () => {
   const canSubmit =
     [title, content, userId].every(Boolean) && addPostStatus === "idle";
 
-  const onPostSend = (e) => {
+  const onPostSend = async (e) => {
     e.preventDefault();
+    if (!canSubmit) return; // Return early if can't submit
+
+    setAddPostStatus("pending");
+
     try {
-      if (canSubmit) {
-        setAddPostStatus("pending");
-        dispatch(createPost({ title, body: content, userId }));
-        setTitle("");
-        setContent("");
-      }
+      await dispatch(createPost({ title, body: content, userId })).unwrap();
+      setTitle("");
+      setContent("");
     } catch (error) {
-      console.log("flailed to save the post", error);
+      console.error("Failed to save the post", error);
     } finally {
       setAddPostStatus("idle");
     }
