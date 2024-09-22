@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../features/posts/postsSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [addPostStatus, setAddPostStatus] = useState("idle");
+  const navigate = useNavigate();
+
   const userId = 1;
   const dispatch = useDispatch();
   const onTitleChange = (e) => setTitle(e.target.value);
@@ -24,6 +27,7 @@ const AddPostForm = () => {
       await dispatch(createPost({ title, body: content, userId })).unwrap();
       setTitle("");
       setContent("");
+      navigate("/");
     } catch (error) {
       console.error("Failed to save the post", error);
     } finally {

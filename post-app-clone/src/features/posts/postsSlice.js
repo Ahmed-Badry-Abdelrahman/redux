@@ -39,7 +39,7 @@ export const updatePost = createAsyncThunk(
   "posts/updatePost",
   async (postContent) => {
     const updatedPost = await putData(postContent);
-    return updatedPost.data;
+    return updatedPost;
   }
 );
 
