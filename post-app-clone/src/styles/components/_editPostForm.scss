@@ -5,9 +5,11 @@
     justify-content: center;
     flex-direction: column;
     font-size: 1.5rem;
+    align-items: center;
 
     >form {
-        max-width: 800px;
+        max-width: 1000px;
+        min-width: 600px;
         display: flex;
         flex-direction: column;
         align-items: start;
