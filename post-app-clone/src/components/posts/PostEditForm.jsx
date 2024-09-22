@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPostById, updatePost } from "../../features/posts/postsSlice";
+import {
+  selectPostById,
+  updatePost,
+  deletePost,
+} from "../../features/posts/postsSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { selectAllUsers } from "../../features/users/usersSlice";
 
@@ -9,7 +13,7 @@ function PostEditForm() {
   const navigate = useNavigate();
 
   const post = useSelector((state) => selectPostById(state, Number(postId)));
-  console.log(post.id);
+  // console.log(post.id);
   const users = useSelector(selectAllUsers);
 
   const [title, setTitle] = useState(post?.title);
@@ -62,6 +66,27 @@ function PostEditForm() {
       setRequestStatus("idle");
     }
   };
+  const deletePostOnClick = async () => {
+    try {
+      setRequestStatus("pending");
+      console.log("Deleting post with id:", post.id);
+
+      // Await the dispatched action
+      const result = await dispatch(deletePost({ id: post.id })).unwrap();
+
+      // Check if the result contains the expected id
+      if (result?.id) {
+        console.log("Post deleted successfully:", result.id);
+        navigate("/");
+      } else {
+        console.error("Delete could not complete", result);
+      }
+    } catch (error) {
+      console.error("Failed to delete post", error);
+    } finally {
+      setRequestStatus("idle");
+    }
+  };
 
   const userOption = users.map((user) => {
     return (
@@ -72,7 +97,7 @@ function PostEditForm() {
   });
 
   return (
-    <div>
+    <div className="post-edit-form">
       <form onSubmit={onPostSend}>
         <label htmlFor="title">Title: </label>
         <input
@@ -101,6 +126,13 @@ function PostEditForm() {
         />
         <button type="submit" disabled={!canSave}>
           Submit
+        </button>
+        <button
+          type="button"
+          onClick={deletePostOnClick}
+          className="delete-btn"
+        >
+          Delete the post
         </button>
       </form>
     </div>

@@ -1,7 +1,8 @@
 @use './variables/color';
-@use './base//reset';
+@use './base/reset';
 
 @use './components/postList';
 @use './components/addPostForm';
-@use './components//singlePost';
-@use './components//header'
+@use './components/singlePost';
+@use './components/header';
+@use './components/editPostForm';

@@ -255,4 +255,79 @@ header > ul > li > a {
   margin-left: 20px;
   cursor: pointer;
   font-size: 1.2rem;
+}
+
+.post-edit-form {
+  padding: 20px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+.post-edit-form > form {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.696);
+  font-size: 1.8rem;
+}
+.post-edit-form > form > input,
+.post-edit-form > form select,
+.post-edit-form > form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.post-edit-form > form > textarea {
+  height: 200px;
+  font-size: 1.5rem;
+  resize: vertical;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: justify;
+}
+.post-edit-form > form > button[type=submit] {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+  width: 100%;
+}
+.post-edit-form > form > button.delete-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #be2525;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */
