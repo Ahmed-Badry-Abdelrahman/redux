@@ -13,12 +13,14 @@ function PostUser({ post }) {
   const usersError = useSelector(selectUsersErrors);
 
   const user = useMemo(() => {
-    return users.find((user) => user.id === post.userId);
+    // console.log("from post user:", post.userId);
+    return users.find((user) => user.id === Number(post.userId));
   }, [post.userId, users]);
 
+  // console.log("from user", user);
   const displayName = user?.name || "Unknown Author";
   return (
-    <p className="Author">
+    <div className="Author">
       {usersStatus ? (
         <p>loading...</p>
       ) : usersError ? (
@@ -26,7 +28,7 @@ function PostUser({ post }) {
       ) : (
         displayName
       )}
-    </p>
+    </div>
   );
 }
 

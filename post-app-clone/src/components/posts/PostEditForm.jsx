@@ -9,6 +9,7 @@ function PostEditForm() {
   const navigate = useNavigate();
 
   const post = useSelector((state) => selectPostById(state, Number(postId)));
+  console.log(post.id);
   const users = useSelector(selectAllUsers);
 
   const [title, setTitle] = useState(post?.title);
@@ -19,9 +20,11 @@ function PostEditForm() {
   const dispatch = useDispatch();
 
   if (!post) {
-    <section>
-      <h2>Post not found</h2>
-    </section>;
+    return (
+      <section>
+        <h2>Post not found</h2>
+      </section>
+    );
   }
 
   const onTitleChange = (e) => setTitle(e.target.value);
@@ -31,26 +34,28 @@ function PostEditForm() {
   const canSave =
     [title, body, userId].every(Boolean) && requestStatus === "idle";
 
-  const onPostSend = () => {
+  const onPostSend = async (e) => {
+    e.preventDefault(); // Prevent default form submission
     if (!canSave) {
       return;
     }
     try {
       setRequestStatus("pending");
-      dispatch(
+      await dispatch(
         updatePost({
+          id: post.id,
           title,
           body,
           userId,
           reactions: post.reactions,
-          reactionTrack: null,
+          reactionTrack: post.reactionTrack,
         })
       ).unwrap();
 
       setTitle("");
       setBody("");
-      setUserId("");
-      navigate(`/posts/${postId}`);
+      setUserId(post.userId); // Use initial post's userId instead of empty string
+      navigate(`/post/${postId}`);
     } catch (error) {
       console.error("Failed to update post", error);
     } finally {
@@ -82,13 +87,12 @@ function PostEditForm() {
           id="userId"
           name="userId"
           value={userId}
-          defaultValue={post.userId}
           onChange={onUserIdChange}
         >
           <option value=""></option>
           {userOption}
         </select>
-        <label htmlFor="content">content: </label>
+        <label htmlFor="content">Content: </label>
         <textarea
           id="content"
           name="content"

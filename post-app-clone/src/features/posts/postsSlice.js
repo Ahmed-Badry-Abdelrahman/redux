@@ -2,6 +2,7 @@ import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchData } from "../AsyncThunk/fetchData";
 import { postData } from "../AsyncThunk/postData";
 import { sub } from "date-fns";
+import { putData } from "../AsyncThunk/putData";
 
 const initialState = {
   posts: [],
@@ -30,6 +31,14 @@ export const createPost = createAsyncThunk(
   async (postContent) => {
     const response = await postData(postContent);
     return response.data;
+  }
+);
+
+export const updatePost = createAsyncThunk(
+  "posts/updatePost",
+  async (postContent) => {
+    const updatedPost = await putData(postContent);
+    return updatedPost;
   }
 );
 
@@ -101,6 +110,19 @@ const postSlice = createSlice({
       };
       console.log(action.payload);
       state.posts.push(action.payload);
+    });
+    builder.addCase(updatePost.fulfilled, (state, action) => {
+      if (!action.payload?.id) {
+        console.log(action.payload.id);
+        console.log("update could not complete");
+        console.log(action.payload);
+        return;
+      }
+
+      const { id } = action.payload;
+      action.payload.date = new Date().toISOString();
+      const posts = state.posts.filter((post) => post.id !== id);
+      state.posts = [...posts, action.payload];
     });
   },
 });

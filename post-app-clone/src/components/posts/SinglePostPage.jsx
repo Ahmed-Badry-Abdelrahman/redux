@@ -9,7 +9,7 @@ import PostReactions from "./PostReactions";
 function SinglePostPage() {
   const { postId } = useParams();
   const post = useSelector((state) => selectPostById(state, Number(postId)));
-
+  // console.log("from single post", post);
   return (
     <div>
       {post ? (
