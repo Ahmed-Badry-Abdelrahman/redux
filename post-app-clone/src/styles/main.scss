@@ -2,4 +2,6 @@
 @use './base//reset';
 
 @use './components/postList';
-@use './components/addPostForm'
+@use './components/addPostForm';
+@use './components//singlePost';
+@use './components//header'

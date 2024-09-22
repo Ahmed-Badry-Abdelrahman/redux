@@ -1,40 +1,38 @@
-section.post-list {
+.single-post-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 2rem;
-    gap: 1rem;
+    padding: 20px;
 
-    >.post {
-        min-width: 700px;
-        padding: 2rem;
-        border-radius: 1rem;
-        -webkit-border-radius: 1rem;
-        -moz-border-radius: 1rem;
-        -ms-border-radius: 1rem;
-        -o-border-radius: 1rem;
-        background-color: #565656;
+    >.single-post {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f8f8f8b2;
+        color: rgb(50, 50, 50);
+        border: 1px solid rgb(89, 89, 89);
 
         >.title-date {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.312);
+            align-items: start;
+            margin-bottom: 10px;
+            gap: 30px;
 
             >.time {
-                color: rgba(255, 255, 255, 0.7);
-                font-size: 0.8rem;
+                color: rgb(79, 79, 79);
+                font-size: 0.9rem;
+                min-width: 100px;
+                padding-top: 10px;
             }
         }
 
-        >p {
-            color: #ffffff;
-            margin: 0;
-            font-size: 1rem;
-            line-height: 1.5;
+        >.post-body {
+            margin-bottom: 20px;
+        }
+
+        >.Author {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
         >.reactions {

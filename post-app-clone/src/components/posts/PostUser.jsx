@@ -18,7 +18,7 @@ function PostUser({ post }) {
 
   const displayName = user?.name || "Unknown Author";
   return (
-    <span>
+    <p className="Author">
       {usersStatus ? (
         <p>loading...</p>
       ) : usersError ? (
@@ -26,7 +26,7 @@ function PostUser({ post }) {
       ) : (
         displayName
       )}
-    </span>
+    </p>
   );
 }
 
