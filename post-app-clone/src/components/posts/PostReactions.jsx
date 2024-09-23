@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 import { addReaction } from "../../features/posts/postsSlice";
-
+import { useCallback } from "react";
 const reactionsEmoji = {
   like: "👍🏻",
   dislike: "👎🏼",
@@ -11,9 +11,12 @@ const reactionsEmoji = {
 function PostReactions({ post }) {
   const dispatch = useDispatch();
 
-  const onReactionClick = (name) => {
-    dispatch(addReaction({ postId: post.id, reaction: name }));
-  };
+  const onReactionClick = useCallback(
+    (name) => {
+      dispatch(addReaction({ postId: post.id, reaction: name }));
+    },
+    [dispatch, post.id]
+  );
 
   return (
     <div className="reactions">
