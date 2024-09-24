@@ -1,2 +1,5 @@
 @use './variables/color';
-@use './base/reset'
+@use './base/reset';
+
+@use './components/productList';
+@use './components/_AddProduct.scss';
