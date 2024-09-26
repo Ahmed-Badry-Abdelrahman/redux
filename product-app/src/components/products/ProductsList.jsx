@@ -38,7 +38,7 @@ function ProductsList() {
       <ul>
         {products.length > 0 &&
           products.map((product) => {
-            return <Product key={product.id} product={product} />;
+            return <Product key={product.id} productId={product.id} />;
           })}
       </ul>
     </div>

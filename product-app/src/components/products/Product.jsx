@@ -1,8 +1,16 @@
-import { useDispatch } from "react-redux";
-import { setEditProductId } from "../../features/products/productsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setEditProductId,
+  selectProductById,
+} from "../../features/products/productsSlice";
+import React from "react";
 import { deleteProduct } from "../../features/AsyncFun/deleteProduct";
+import Reactions from "./Reactions";
 /* eslint-disable react/prop-types */
-function Product({ product }) {
+function Product({ productId }) {
+  const product = useSelector((state) => selectProductById(state, productId));
+  console.log("product", product);
+
   const dispatch = useDispatch();
 
   const handleEditClick = (id) => {
@@ -27,6 +35,7 @@ function Product({ product }) {
         >
           Delete
         </button>
+        <Reactions productId={product.id} />
       </div>
     </li>
   );

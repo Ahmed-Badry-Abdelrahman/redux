@@ -16,6 +16,9 @@ const productsSlice = createSlice({
     isLoading: false,
     error: null,
     editProductId: null,
+    reactions: {
+      heart: 0,
+    },
   }),
   reducers: {
     setEditProductId: (state, action) => {
@@ -23,6 +26,19 @@ const productsSlice = createSlice({
     },
     clearEditProductId: (state) => {
       state.editProductId = null;
+    },
+    addProductReaction: (state, action) => {
+      const { id, reaction } = action.payload;
+      const product = state.entities[id];
+      if (product) {
+        if (product.reactionTrack) {
+          product.reactionTrack = null;
+          product.reactions[reaction] -= 1;
+          return;
+        }
+        product.reactions[reaction] += 1;
+        product.reactionTrack = reaction;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -32,7 +48,18 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        productsAdapter.setAll(state, action.payload); // Set products in state
+        console.log("from setAll: ", action.payload);
+        const newProducts = action.payload.map((product) => {
+          return {
+            ...product,
+            reactions: {
+              heart: 0,
+            },
+            reactionTrack: null,
+          };
+        });
+        console.log("from setAll2: ", newProducts);
+        productsAdapter.setAll(state, newProducts); // Set products in state
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.isLoading = false;
@@ -41,7 +68,13 @@ const productsSlice = createSlice({
       // Add a new product
       .addCase(addProduct.fulfilled, (state, action) => {
         console.log("from addProduct action ", action.payload);
-        productsAdapter.setOne(state, action.payload);
+        const newProduct = {
+          ...action.payload,
+          reactions: {
+            heart: 0,
+          },
+        };
+        productsAdapter.setOne(state, newProduct);
       })
       // update product
       .addCase(updateProduct.fulfilled, (state, action) => {
@@ -68,4 +101,5 @@ export const selectAllProducts = selector.selectAll;
 export const selectProductById = selector.selectById;
 export const numOfProducts = selector.selectTotal;
 export const editProductId = (state) => state.products.editProductId;
-export const { setEditProductId, clearEditProductId } = productsSlice.actions;
+export const { setEditProductId, clearEditProductId, addProductReaction } =
+  productsSlice.actions;
